@@ -34,7 +34,7 @@ education:
   courses:
   - course: PhD in Natural Sciences
     institution: Eberhard Karls University Tübingen
-  - course: Msc in Soil and Water Management
+  - course: MSc in Soil and Water Management
     institution: Universidad de Chile
     year: 2018
   - course: Agricultural Engineering
