@@ -14,7 +14,7 @@ role: Doctoral student
 
 # Organizations/Affiliations
 organizations:
-- name: Eberhard Karls University Tübingen
+- name: Eberhard Karls University Tübingen<br/>Soil Science and Geomorphology
   url: "https://uni-tuebingen.de/en/faculties/faculty-of-science/departments/geosciences/work-groups-contacts/geographie/forschungsbereich/bodenkunde-und-geomorphologie/work-group/people-main-pages/doctoral-students/nicolas-riveras-munoz/"
 
 # Short bio (displayed in user profile at end of posts)
