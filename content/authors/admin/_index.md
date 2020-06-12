@@ -18,13 +18,15 @@ organizations:
   url: "https://uni-tuebingen.de/en/faculties/faculty-of-science/departments/geosciences/work-groups-contacts/geographie/forschungsbereich/bodenkunde-und-geomorphologie/work-group/people-main-pages/doctoral-students/nicolas-riveras-munoz/"
 
 # Short bio (displayed in user profile at end of posts)
-bio: My research interests include distributed robotics, mobile computing and programmable matter.
+bio: My research interests include environmental sciences and technology in general.
 
 interests:
 - Soil sciences
 - Environmental sciences
 - Remote sensing
 - Machine Learning and Data Science
+- Mountain bike
+- Hiking
 
 education:
   courses:
