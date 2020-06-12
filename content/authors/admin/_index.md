@@ -1,6 +1,6 @@
 ---
 # Display name
-title: Nicolas Riveras Muñoz
+title: Nicolás Riveras Muñoz
 
 # Username (this should match the folder name)
 authors:
