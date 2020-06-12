@@ -18,19 +18,19 @@ subtitle = ""
   icon = "leaf"
   icon_pack = "fas"
   name = "Environment"
-  description = "100%"
+  #description = "100%"
   
 [[feature]]
   icon = "chart-line"
   icon_pack = "fas"
   name = "Statistics"
-  description = "60%"  
+  #description = "60%"  
   
 [[feature]]
   icon = "biking"
   icon_pack = "fas"
   name = "Cyclist"
-  description = "100%"
+  #description = "100%"
 
 # Uncomment to use emoji icons.
 # [[feature]]
