@@ -16,7 +16,7 @@ role: Doctoral student
 organizations:
 - name: Eberhard Karls University Tübingen
   url: "https://uni-tuebingen.de/en/"
-  - name: Soil Science and Geomorphology
+- name: Soil Science and Geomorphology
   url: "https://uni-tuebingen.de/en/faculties/faculty-of-science/departments/geosciences/work-groups-contacts/geographie/forschungsbereich/soil-science-geomorphology/work-group/"
 
 # Short bio (displayed in user profile at end of posts)
