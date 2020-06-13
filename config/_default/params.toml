@@ -100,7 +100,7 @@ address = {street = "Rümelinstraße 19 – 23", city = "Tübingen", region = ""
 coordinates = {latitude = "48.523906", longitude = "9.055638"}
 
 # Directions for visitors to locate you.
-directions = "Office: Westbau W302"
+directions = "Office: West building W302"
 
 # Office hours
 # A list of your office hours. To remove, set to an empty list `[]`.
