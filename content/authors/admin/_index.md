@@ -77,5 +77,5 @@ user_groups:
 - Visitors
 ---
 
-Passionate about nature and technology, I have always been in the dilemma of which is the best approach to solve a problem: a practical way through experiments or a more theoretical way analysing the data...I don't really have an answer for that and it will probably depend on each case, but I enjoy the process of learning, the challenge of solve it and help people along the way.<br><br>
+Passionate about nature and technology, I have always been in the dilemma of which is the best approach to solve a problem: a practical way through experiments or a more theoretical way analysing the data...I don't really have an answer for that and it will probably depend on each case, but I enjoy the process of learning, the challenge of solve it and help people along the way.<br/>
 Currently working on soil science, the thin skin of our planet, often ignored, but really fundamental to many processes. I am pursuing my doctoral research in explaining how biota regulates landscape formation processes, through the modulation of erosion.
