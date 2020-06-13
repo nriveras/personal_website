@@ -77,5 +77,5 @@ user_groups:
 - Visitors
 ---
 
-Passionate about nature and technology, I have always found myself in the dilemma of whether it is better to unravel a problem by analyzing the data or in a practical way through experiments...I don't really have an answer for that and it will probably depend on each case, but I enjoy the learning process, the challenge of trying to solve it and helping people along the way.
+Passionate about nature and technology, I have always found myself in the dilemma of whether it is better to unravel a problem by analyzing the data or in a practical way through experiments...I don't really have an answer for that and it will probably depend on each case, but I enjoy the learning process, the challenge of trying to solve it and helping people along the way.<br/>
 Currently working on soil science, the thin skin of our planet, often ignored, but really fundamental to many processes. I am pursuing my doctoral research in explaining how biota regulates landscape formation processes, through the modulation of erosion.
