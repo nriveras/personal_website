@@ -1,0 +1,161 @@
+theme: my_theme
+day_night: yes
+font: Minimal
+font_size: M
+site_type: Person
+local_business_type: ''
+org_name: ''
+description: ''
+highlight: yes
+highlight_languages: r
+math: no
+diagram: no
+privacy_pack: no
+edit_page:
+  content_dir: ''
+  editable:
+    docs: yes
+    page: no
+    post: no
+  repo_branch: master
+  repo_url: https://github.com/gcushen/hugo-academic
+show_related:
+  docs: yes
+  page: no
+  post: yes
+  project: yes
+  publication: yes
+  talk: yes
+email: nicolas-andres.riveras-munoz@uni-tuebingen.de
+phone: +49 7071 29 74 081
+address:
+  city: Tübingen  
+  country: Germany  
+  country_code: DE   
+  postcode: D-72070  
+  region: ''
+  street: Rümelinstraße 19 – 23
+coordinates:
+  latitude: '48.523906'
+  longitude: '9.055638'
+directions: 'Office: West building W302'
+office_hours: []
+appointment_url: ''
+contact_links: []
+sharing_image: ''
+twitter: ''
+date_format: Jan 2, 2006
+time_format: 3:04 PM
+address_format: de
+main_menu:
+  align: l
+  show_logo: yes
+reading_time: no
+section_pager: no
+docs_section_pager: yes
+sharing: yes
+copyright_license:
+  allow_commercial: no
+  allow_derivatives: no
+  enable: no
+  notice: This work is licensed under {license}
+  share_alike: yes
+highlight_superuser: no
+link_authors: yes
+abstract_length: 135
+plugins_js: []
+avatar:
+  gravatar: no
+  shape: circle
+address_formats:
+  de:
+    delimiters:
+      - <br>
+      - ' '
+      - <br>
+      - <br>
+      - ''
+    order:
+      - street
+      - postcode
+      - city
+      - country
+  en-gb:
+    delimiters:
+      - ', '
+      - ', '
+      - ', '
+      - ''
+    order:
+      - street
+      - city
+      - region
+      - postcode
+  en-us:
+    delimiters:
+      - ', '
+      - ', '
+      - ' '
+      - ''
+    order:
+      - street
+      - city
+      - region
+      - postcode
+  fr-fr:
+    delimiters:
+      - <br>
+      - ' '
+      - ''
+    order:
+      - street
+      - postcode
+      - city
+  zh:
+    delimiters:
+      - ' '
+      - ' '
+      - ' '
+      - ''
+    order:
+      - postcode
+      - region
+      - city
+      - street
+publications:
+  citation_style: apa
+  date_format: January 2006
+projects:
+  post_view: 2
+  publication_view: 2
+  talk_view: 2
+comments:
+  commentable:
+    docs: yes
+    page: yes
+    post: yes
+    project: yes
+    publication: yes
+    talk: yes
+  commento:
+    url: ''
+  disqus:
+    shortname: ''
+    show_count: yes
+  engine: 0
+search:
+  algolia:
+    api_key: ''
+    app_id: ''
+    index_name: ''
+    show_logo: no
+  engine: 0
+map:
+  api_key: ''
+  engine: 2
+  zoom: 15
+marketing:
+  google_analytics: UA-169316253-1
+  google_tag_manager: GTM-M26NZ2L
+cms:
+  netlify_cms: yes

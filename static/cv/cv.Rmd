@@ -1,0 +1,80 @@
+---
+name: Nicolás
+surname: Riveras Muñoz
+position: "PhD Candidate"
+address: "Soil science and geomorphology, University of Tübingen"
+#phone: +1 22 3333 4444
+www: nriveras.com
+# email: nicolas-andres.riveras-munoz@uni-tuebingen.de
+github: nriveras
+# orcid: ug7xd #refer to osf in back-end
+linkedin: nriveras@uchile.cl #refer to email in back-end 
+profilepic: img.jpg
+headcolor: "0088cc"
+date: "`r format(Sys.time(), '%B %Y')`"
+output: 
+  vitae::awesomecv:
+    page_total: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(vitae)
+library(fontawesome)
+#Note: this template uses fontawesome v4
+#https://fontawesome.com/v4/icons/
+```
+
+# Education
+
+**Soil Science and Geomorphology, University of Tübingen** \hfill Expected 2023  
+Ph.D. candidate in Natural Sciences
+
+**Faculty of Agricultural Sciences, University of Chile** \hfill 2017  
+M.Sc. in Soil and Water Management  
+Professional Title of Agricultural Engineer  
+B.Sc. in in Agricultural Sciences  
+
+# Research interests  
+
+Environment; Agriculture; Soil Sciences; Remote sensing; Soil–Plant–Atmosphere interactions; Soil Physics
+
+# Technical Skills
+
+QGIS, Google Earth Engine, AutoCAD, MySQL, MS Office, Agisoft, Python, R, VBA, Java, Arduino.
+
+# Professional experience
+
++ **University of Tübingen**  \hfill Germany, 2018 - present   
+Doctoral candidate: in project *EarthShape DFG-SPP 1803, Phase II Project 3: Microbial Engineers - Drivers of Earth Surface Development and Stabilization*. Experience in field campaigns, laboratory and data analysis, attendance to scientific conferences, and publication of scientific papers.  
+
++ **Agrinnova SpA.**  \hfill Chile, 2018    
+Co-founder: Company oriented to soil studies and water management, consulting for INDAP (Agricultural Development Institute) farmers, irrigation projects for the University of Chile, and soil studies for multiple clients related to the solar energy and mining industry.  
+
++ **Gestión Ambiental Consultores S.A.**  \hfill Chile, 2018   
+Soil Specialist: soil baselines for solar energy projects along Chile.  
+
++ **Gestión Ambiental Consultores S.A. **  \hfill Chile, 2019   
+Soil, landscape and territory specialist: baselines for medium and large mining projects.  
+
++ **Independant consultant**  \hfill Chile, 2017   
+Soil Specialist: soil baselines and environmental impact assesment of construction, agriculture, solar energy and mining projects   
+
++ **MWH Américas Inc. Chile Ltda.**  \hfill Chile, 2017  
+Soil Specialist: soil baseline for project *Donoso Landfill*  
+
++ **AT-EME S.A.**  \hfill Chile, 2016  
+Data Scientist: manage users' databases for *agroeconomic study of the Pocuro Alto Dam*.  
+
+# Publications
+
++  **Riveras-Muñoz, N.**, Seitz, S., Witzgall, K., Rodríguez, V., Kühn, P., Mueller, C. W., Oses, R., Seguel, O., Wagner, D., & Scholten, T. (2022). Biocrust-linked changes in soil aggregate stability along a climatic gradient in the Chilean Coastal Range. *SOIL*, 8, 717-731. [**doi: 10.5194/soil-8-717-2022**](https://doi.org/10.5194/soil-8-717-2022)
+
+# Publications (continued)
+
++ **Riveras-Muñoz, N.,** Silva, C., Salazar, O., Scholten, T., Seitz, S., & Seguel, O. (2022). Variability of Hydraulic Properties and Hydrophobicity in a Coarse-Textured Inceptisol Cultivated with Maize in Central Chile. *Soil Systems*, 6(4), 83. [**doi: 10.3390/soilsystems6040083**](https://doi.org/doi:10.3390/soilsystems6040083)
+
++ Rodriguez, V., Moskwa, L.-M., Oses, R., Kühn, P., **Riveras-Muñoz, N.**, Seguel, O., Scholten, T., & Wagner, D. (2022). Impact of Climate and Slope Aspects on the Composition of Soil Bacterial Communities Involved in Pedogenetic Processes along the Chilean Coastal Cordillera. *Microorganisms*, 10(5), 847. [**doi: 10.3390/microorganisms10050847**](https://doi.org/10.3390/microorganisms10050847)
+
++ Pfeiffer, M., Padarian, J., Osorio, R., Bustamante, N., Olmedo, G. F., Guevara, M., Aburto, F., Albornoz, F., Antilén, M., Araya, E., Arellano, E., Barret, M., Barrera, J., Boeckx, P., Briceño, M., Bunning, S., Cabrol, L., Casanova, M., Cornejo, P., Corradini, F., Curaqueo, G., Doetterl, S., Duran, P., Escudey, M., Espinoza, A., Francke, S., Fuentes, J. P., Fuentes, M., Gajardo, G., García, R. ,Gallaud, A., Galleguillos, M., Gomez, A., Hidalgo, M., Ivelic-Sáez, J., Mashalaba, L., Matus, F.Meza, F., Mora, M. D. L. L., Mora, J., Muñoz, C., Norambuena, P., Olivera, C., Ovalle, C., Panichini, M., Pauchard, A., Pérez-Quezada, J. F., Radic, S., Ramirez, J., **Riveras-Muñoz, N.**, Ruiz, G., Salazar, O., Salgado, I., Seguel, O., Sepúlveda, M., Sierra, C., Tapia, Y., Tapia, F., Toledo, B., Torrico, J. M., 
+Valle, S., Vargas, R., Wolff, M., Zagal, E. (2020). CHLSOC: the Chilean Soil Organic Carbon database, a multi-institutional collaborative effort. *Earth Syst. Sci. Data*, 12(1), 457-468. [**doi: 10.5194/essd-12-457-2020**](https://doi.org/10.5194/essd-12-457-2020)
