@@ -5,7 +5,7 @@ theme: "starter-academic"
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
 title: Nicolás Riveras Muñoz # Website name
-baseurl: 'https://nriveras.com' # Website URL
+baseurl: 'nriveras.netlify.app' # Website URL
 copyright: '' # Footer text, e.g. '© {year} Me'
 
 ############################
