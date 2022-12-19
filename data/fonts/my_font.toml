@@ -8,4 +8,4 @@ google_fonts = "family=Lora:wght@400;700&family=Montserrat:wght@400;700&family=R
 heading_font = "Roboto"
 body_font = "Roboto"
 nav_font = "Roboto"
-mono_font = "Roboto Mono"
+mono_font = "Roboto"

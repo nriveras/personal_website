@@ -7348,7 +7348,7 @@ a:focus {
 
 pre,
 code {
-  font-family: "Roboto Mono", monospace;
+  font-family: "Roboto", monospace;
   color: #c7254e;
   /* Match bg of default highlight theme. */
   background-color: #f8f8f8; }

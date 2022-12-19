@@ -15,23 +15,29 @@ font_size: M
 site_type: Person
 local_business_type: ''
 org_name: ''
-description: 'Shilaan Alzahawi personal website'
-twitter: 'https://twitter.com/shilaan01'
+description: 'Nicolás Riveras Muñoz personal website'
 
 # Contact (edit or remove options as required)
 
 address:
   street: Rümelinstraße 19 – 23  
-  city: Tübingen  
-  region: Baden-Württemberg  
+  city: Tübingen
+  region: [Baden-Württemberg] 
   postcode: 72070  
-  country: Germany  
+  country: Germany
   country_code: DE  
 coordinates:
   latitude: '48.52384'
   longitude: '9.05503'
 directions: 'Office: West building W302'
-office_hours: [10:00-16:00 hrs]
+office_hours: [Monday to Friday, 10:00-16:00 hrs]
+
+# Localization
+
+date_format: 'Jan 2, 2006'
+time_format: '3:04 PM'
+address_format: de
+
 
 # Site header
 
@@ -43,24 +49,9 @@ main_menu:
   show_day_night: false
   show_search: false
   highlight_active_link: true
-address_formats:
-  de:
-    delimiters:
-      - <br>
-      - <br>
-      - <br>
-      - ''
-    order:
-      - street
-      - postcode
-      - city
-      - country
 
-# Localization
 
-date_format: 'Jan 2, 2006'
-time_format: '3:04 PM'
-address_format: de
+
 
 # Site features
 highlight: true

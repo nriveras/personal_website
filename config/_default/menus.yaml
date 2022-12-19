@@ -21,7 +21,7 @@ main:
 #    weight: 30 # keep as draft before committing
   - name: Contact
     url: '#contact'
-    weight: 70
+    weight: 50
   - name: CV
     url: "cv/cv.pdf"
     weight: 80
