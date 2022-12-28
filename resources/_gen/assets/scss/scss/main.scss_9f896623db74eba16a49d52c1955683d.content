@@ -9492,7 +9492,7 @@ div.chart {
 pre,
 code {
   color: #035AA6;
-  font-family: papyrus; }
+  font-family: Lucida Console; }
 
 ul.check-mark-list {
   /*choose your own descriptive class name. */
