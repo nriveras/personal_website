@@ -1,0 +1,561 @@
+---
+title: Exploratory data analysis
+author: 'Nicolás Riveras Muñoz'
+date: '2022-12-28'
+slug: exploratory-data-analysis
+categories: []
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2022-12-28T16:52:01+01:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+share: false
+---
+
+
+In this chapter, we will see how to explore data to:
+
++   Generate questions about your data.
++   search for answers by visualizing, *transforming* and modeling your data.
++   Use what you learn to refine your questions and/or generate new questions.
+
+This is not a formal process and you should feel free to investigate every idea that occurs to you.
+With the exploratory data analysis we can now the quality of our data, it it meet or not our expectations, if it is necessary to clean, transform, etc.
+
+## Basic data management
+
+### Setting up a working directory (working directory)
+
+As with most of the projects, we start choosing a working directory to indicate R where are our files.
+
+```{r, eval=FALSE}
+getwd()                       # Current working directory 
+setwd("C:/GEO77_R_course") 	  # Set a working directory
+setwd("C:\\GEO77_R_course")   # another valid way to select the same working directory
+setwd("C:\GEO77_R_course")    # an invalid way of selecting the same working directory
+```
+
+#### And if I do not want to write code?
+
+![](images/set_directory.png)
+
+-   or go to Session/Set Working Directory/Choose directory... and select folder
+
+-   or press `Ctrl+⇧Shift+H` and select folder
+
+**Why?** 
+
++   Clarity 
++   Simplification of data management 
++   Facilitates access to our data
+
+### Loading data
+
+R has the ability to load multiple file formats, which can be further extended through packages.
+
+Reading a dataset `read.table()`
+
+```{r, echo=FALSE}
+setwd("D:/personal_website/content/post/2022-12-28-exploratory-data-analysis")
+
+file_location <- "./soil_data.txt"
+```
+
+
+```{r}
+# relative file location
+file_location <- "C:/GEO77_R_course/data/soil_data.txt"
+# absolute file location
+file_location <- "./soil_data.txt"
+```
+
+```{r}
+soil_data <- read.table(file_location, header = TRUE)
+```
+```{r}
+names(soil_data)
+```
+```{css, echo=FALSE}
+.scroll-200 {
+max-height: 200px;
+overflow-y: auto;
+background-color: inherit;
+}
+```
+```{r,class.output="scroll-200"}
+str(soil_data)
+```
+```{r, echo=FALSE, message=FALSE}
+library(dplyr)
+soil_data %>%
+  kableExtra::kbl() %>%
+  kableExtra::kable_classic(full_width = T, html_font = "Cambria", lightable_options = "basic") %>%
+  kableExtra::scroll_box(width = "100%", height = "200px")
+```
+
+
+#### don't forget!
+
+<img src="images/file_different_folder.png" alt="drawing" width="200"/>
+
+### Writing data `write.table()`
+
+R also allows to export our output/results in different formats:
+
+```{r, eval=FALSE}
+write.table(soil_data, file = "output/this_is_a_copy_of_soil_data_made_with_R.csv", sep = ",",
+            row.names = FALSE, col.names = TRUE)
+
+```
+## Statistical evaluation
+
+When we work with data, is important to describe our data to understand it better. There are a wide variety of statistics used to describe or summarize data in terms of central tendency, shape, position, etc.
+
+```{r}
+# We separate only two properties to make easier to work with them
+pH <- soil_data$pH
+OC <- soil_data$OC
+N <- soil_data$N
+
+# and we also create a data.frame with those 3 variables (only for easy handling)
+data <- as.data.frame(cbind(pH, OC, N))
+```
+### Descriptive statistics
+```{r}
+mean(pH)
+median(pH)
+min(pH)
+max(pH)
+range(pH)
+sd(pH)
+quantile(pH)
+summary(pH)
+
+# For factors, is interesting to describe how many observations belong to each category
+
+pH_class_count <- as.data.frame(table(soil_data$pH_class))
+
+pH_class_count
+
+```
+
+some functions are not included in base R, but implemented via packages. E.g. `moments`
+
+```{r}
+library(moments)
+skewness(pH)
+```
+Skewness indicates if our data distribution is symmetric or not:
+
+![](images/Negative_and_positive_skewness_diagrams.svg)
+
+```{r}
+kurtosis(pH)
+```
+Kurtosis describe is how long is the tail of our data distribution:
+
+![](images/kurtosis.jpg)
+
+### Correlation
+
+Pearson correlation coefficient `cor()`
+
+$$
+{r_{xy}=\frac{\sum_{i = 1}^{n}(x_i-\overline{x})(y_{i}-\overline{y})}{\sqrt{\sum_{i = 1}^{n}(x_{i}-\overline{x})^2}{\sqrt{\sum_{i = 1}^{n}(y_{i}-\overline{y})^2}}}}
+$$
+
+where:
+
+-   $$n$$ is sample size
+-   $$X_{i}$$, $$Y_{i}$$ are the individual sample points indexed with $$i$$
+-   $$\overline{x} = \frac{1}{n}\sum_{x = 1}^{n} x_{i}$$ (the sample mean);
+
+and analogously for $${\bar {y}}$$
+
+Examples:
+
+![](images/Correlation_examples2.svg.png)
+
+So now with our data...
+
+```{r}
+cor(OC, N)
+```
+
+```{r, echo=FALSE}
+plot(OC, N)
+```
+
+[Spurious correlations](http://tylervigen.com/spurious-correlations)
+
+### Linear regression `lm()`
+
+in R, the linear models are written as `lm(y ~ x, data)`
+
+Example:
+
+
+```{r, fig.show="hold", out.width="50%"}
+linearModel <- lm(OC ~ N , data = data)
+summary(linearModel)
+```
+<details><summary>Some more functions for the curious ones</summary>
+
+
+```{r}  
+plot(linearModel)
+```
+When running this command, we obtain a set of 4 plots that are out of the scope of this "introduction", but:
+
++   **Residuals vs Fitted **: The residuals are distributed following a systematic pattern around the value 0, indicating that the *linear* regression is not the best. The residuals are also more concentrated in the center, while towards the extremes they show less dispersion, which could indicate heterogeneity among the error variances (heteroscedasticity). Some residuals stand out, indicating the possible presence of outliers.
++   **Normal Q-Q**: It compares a theoretical normal distribution with the residuals of our model. It should show a straight line for normality assumption and should not show systematic pasterns (should be randomly distributed around that straight line).
++   **Scale-location**: it shows if residuals are spread equally along the ranges of predictors. This is how you can check the assumption of equal variance (homoscedasticity). It’s good if you see a horizontal line with equally (randomly) spread points.
++   **Residuals vs leverage**: Unlike the other plots, this time the patterns are not relevant. We look for outlying values in the upper or lower right corner. These places are where cases with a large weight in the linear regression can be located. Look for cases outside the dotted lines, which means they have high Cook's distance values.
+
+This is just a visual check, not an air-tight proof, so it is somewhat subjective. But it allows us to see at-a-glance if our assumption is plausible, and if not, how the assumption is violated and what data points contribute to the violation.
+
+Source: [Understanding Diagnostic Plots for Linear Regression Analysis](https://data.library.virginia.edu/diagnostic-plots/#:~:text=Scale%2DLocation,equally%20(randomly)%20spread%20points.)
+</details>
+
+### Coefficient of determination with Pearson correlation coefficient `cor()`
+
+$$
+R^2≡1-\frac{\sum(y_{i}-\hat{y_{i}})^2}{\sum(y_{i}-\overline{y})^2}
+$$
+
+$$
+R^2=r×r
+$$
+
+```{r}
+cor(OC, linearModel$fitted.values) * cor(OC, linearModel$fitted.values)
+```
+
+### root mean squared error (RMSE)
+
+
+$$
+RMSE=\sqrt{\frac{1}{n}\sum_{i = 1}^{n}{(\hat{y_{i}}-y_{i})^2}}
+$$
+
+
+```{r}
+
+sqrt(1 / length(rbind(linearModel$residuals)) * sum(rbind(linearModel$residuals) ^ 2))
+
+```
+### Function for the root mean squared error (RMSE)
+
+Base R does not include a function for RMSE in base R, but in R we can create custom functions as follows:
+
+```{r, eval = FALSE}
+function_name <- function(input_x, input_y, ...) {
+  some_operations
+}
+```
+
+Let\'s create our own RMSE function: 
+
+```{r}
+rmse <- function(x, y) {
+  sqrt(mean((x - y) ^ 2))
+}
+```
+
+Requires input
+
+```{r}
+rmse(linearModel$fitted.values, OC)
+```
+## Visualization with plots
+
+[The R Graph Gallery](https://www.r-graph-gallery.com/index.html)
+
+### Boxplots `boxplot()`
+
+```{r}
+boxplot(pH, N, names = c("pH value", "N [%]"), ylab = "pH in water and N")
+
+```
+
++   Data to be displayed: pH and Corg
++   Labeling of the x-axis: names = c("pH value", "N [%]").
++   Labeling of the y-axis: ylab = "pH in water and N".
+
+What does the boxplot show?
+
+### Histograms `hist()`
+
+```{r}
+hist(pH,
+     xlab = "pH value", 
+     ylab = "Frequency", 
+     main = ""
+     )
+```
+
+### Density plots `plot(density()`
+
+```{r}
+plot(density(pH),
+     xlab = "pH value",
+     ylab = "Frequency", 
+     main = ""
+     )
+```
+
+### Scatterplots `plot(x, y)`
+
+```{r}
+plot(N, 
+     OC, 
+     xlab = "OC [%]",
+     ylab = "N [%]"
+     )
+```
+
+### Design options
+
+Directly in the graphic routines (help with `?par`)
+
++   Set colors with `col = ...`
++   Set symbol properties with `pch = ...`, sizes with `cex = ...`
++   Set title with `main = ...`, axis label with `xlab = ...`, `ylab = ...`
++   Set drawing area with `xlim = ...`, `ylim = ...`
+
+After drawing a graphic
+
++   Complete lines and points with `lines(...)` or `points(...)` respectively.
++   Add captions (texts) with `text(...)` or `mtext(...)`
++   Complete titles with `title(...)`
++   Complete legend with `legend(...)`
+
+Output adjustment
+
++   `main` Title of the diagram
++   `xlab` labeling of the x-axis
++   `ylab` labeling of the y-axis
++   `breaks` frequency classes number of bars
++   `col` color filling of the bars
++   `cex` gradual scaling of text size
+
+```{r}
+hist(pH, 
+     xlab = "pH value", 
+     ylab = "Frequency", 
+     main = "",
+     breaks = seq(3.5, 8.5, 0.125), 
+     col = "red",
+     cex = 0.5
+     )
+
+```
+
+## All roads lead to `R`ome
+
+When working with code, it is very common that there are several ways to solve the same problem.
+
+**Exercise:** 
+
++   Calculate all the statistical parameters for one different variable
++   Create boxplots and histograms for clay content and P
++   Calculate correlations between clay content, OC, N, and P
+
++   And now for the frequency distribution of pH_class, create one of the next plots with the tools we already saw.
+
+In the variable pH_class, pH is classified as:
+
++   **neutral**: 6.5 to 7.5
++   **alkaline**: over 7.5
++   **acidic**: less than 6.5
+
+**Hint: The three different version are made with a `barplot()`, `plot()` and `hist()`**
+
+```{r, echo = FALSE}
+
+pH_class_count <- as.data.frame(table(soil_data$pH_class))
+
+```
+
+### Variant A
+
+```{r, echo = FALSE}
+barplot(pH_class_count$Freq, space = 0, names = pH_class_count$Var1, 
+                    xlab = "pH class", ylab = "Frequency", 
+                    main = "Frequency diagram of pH classes") 
+```
+
+### Variant B
+
+```{r, echo = FALSE}
+
+plot(factor(soil_data$pH_class), 
+     xlab = "pH class", 
+     ylab = "Frequency", 
+     main = "Frequency diagram of pH classes")
+```
+
+### Variant C
+
+```{r, echo = FALSE}
+hist(as.numeric(factor(soil_data$pH_class)),
+     breaks = c(0, 1, 2, 3),
+     freq = TRUE,
+     xaxt = "n",
+     xlab = "pH class",
+     ylab = "Frequency",
+     main = "Frequency diagram of pH classes")
+
+axis(side = 1, at = seq(0.5, 2.5, 1), labels = pH_class_count$Var1)
+```
+
+#### Solution
+
+<details><summary>See solution</summary>
+
+```{r, eval=FALSE}
+pH_class_count <- as.data.frame(table(soil_data$pH_class))
+
+# Variant A
+barplot(pH_class_count$Freq, space = 0, names = pH_class_count$Var1, 
+        xlab = "pH class", ylab = "Frequency", 
+        main = "Frequency diagram of pH classes") 
+
+# Variant B
+plot(factor(soil_data$pH_class), 
+     xlab = "pH class", 
+     ylab = "Frequency", 
+     main = "Frequency diagram of pH classes")
+
+# Variant C
+hist(as.numeric(factor(soil_data$pH_class)),
+     breaks = c(0, 1, 2, 3),
+     freq = TRUE,
+     xaxt = "n",
+     xlab = "pH class",
+     ylab = "Frequency",
+     main = "Frequency diagram of pH classes")
+axis(side = 1, at = seq(0.5, 2.5, 1), labels = pH_class_count$Var1)
+```
+
+
+</details>
+
+
+## Multiple plots in one figure
+
+When you set graphical parameters in Rstudio using this method, it is important to set the properties, plot the figures and reset the properties to the way they were before. Otherwise, every time we plot something, it will follow the set parameters.
+
+```{r, eval=FALSE}
+par(                              # set or query graphical parameters
+  mfrow = c(1, 3),                # 1 x 3 pictures on one plot, equivalent to mfcol = c(3, 1)
+  mar = c(5.1, 4.1, 4.1, 2.1),    # margins as c(bottom, left, top, right)
+  oma = c(0, 0, 0, 0),            # outer margins in lines of text as c(bottom, left, top, right)
+  mgp = c(3, .1, 0),              # margins line for axis title, axis label and axis line
+  las = 0,                        # label axis style 
+  cex.lab = 1,                    # size of the labels
+  cex.axis = 1,                   # size of the axis annotation 
+  xpd = FALSE                     # If FALSE, all plotting is clipped to the plot region, if TRUE, all plotting is clipped to the figure region, and if NA, all plotting is clipped to the device region.
+    )
+
+plot(…); plot(…); plot(…)
+
+par(mfrow = c(1, 1), 
+    mar = c(5.1, 4.1, 4.1, 2.1), 
+    oma = c(0, 0, 0, 0), 
+    mgp = c(3, 1, 0), 
+    las = 0, 
+    cex.lab = 1, 
+    cex.axis = 1,
+    )
+
+```
+
+```{r, echo=FALSE, fig.show="hold", out.width="33%"}
+par(mar = c(5.1, 4.1, 4.1, 2.1))
+
+# Variant A
+barplot(pH_class_count$Freq, space = 0, names = pH_class_count$Var1, 
+        xlab = "pH class", ylab = "Frequency", 
+        main = "Frequency diagram of pH classes") 
+
+# Variant B
+plot(factor(soil_data$pH_class), 
+     xlab = "pH class", 
+     ylab = "Frequency", 
+     main = "Frequency diagram of pH classes")
+
+# Variant C
+hist(as.numeric(factor(soil_data$pH_class)),
+     breaks = c(0, 1, 2, 3),
+     freq = TRUE,
+     xaxt = "n",
+     xlab = "pH class",
+     ylab = "Frequency",
+     main = "Frequency diagram of pH classes")
+
+axis(side = 1, at = seq(0.5, 2.5, 1), labels = pH_class_count$Var1)
+
+```
+
+## Plots file output
+
+In R it is possible to export images in the most common formats and can be extended from packages. The output format must be specified and the file will be generated by default in our working directory.
+
+```{r, eval=FALSE}
+tiff("filename.tiff", width = 21, height = 8, units = "cm", res = 300)
+
+par(…)
+	plot(…); plot(…); plot(…)
+par(…)
+
+dev.off()
+```
+Plot export can be done in most of the image formats. E.g. .png, .jpg, .svg, etc. 
+
+# Do I have to learn all these commands by heart?
+
+**No!** R and Rstudio provide several tools to help us do this:
+
++ **comments**: when running our script, `R` will ignore all the text that start with `#`. Is a good practice to comment our code, is very useful if somebody else need to understand your code or for yourself in the future. In Rstudio, you can comment/uncomment the selected text with `Ctrl+⇧Shift+C`
++ **autocomplete**: Rstudio will suggest possible parameter for a function. Inside a function press the key `Tab ↹`, and it will display a list with the possible parameters for that function. move up `↑` and down `↓` and select with `↵ Return`.
++ **help**: you can select a function and press `F1`, write `?function`, `help(function)` or `help('function')` in the Rstudio console, and it will display the corresponding documentation for that function in the help panel.
++ **cheatsheets**: It is very common that for the most popular packages there are [cheat sheets](https://rstudio.cloud/learn/cheat-sheets) summarizing the most important functions
+
+# Libraries
+
+Many functions are not included in the basic version of R. Therefore, there is an almost confusing variety of additional libraries for special applications.
+Examples:
+
++   `ggplot2` and `lattice` for advanced graphics
++   `dplyr`, `reshape2` and `tidyr` for data manipulation
++   `sp` and `sf` for spatial data (shapefiles, geopackage, etc.)
++   `raster`, `terra`, `stars` for spatial raster data
++   `caret` as wrapping function for machine-learning libraries
++   `RQGIS` and `RSAGA` as bridges to QGIS and SAGA GIS
++   Currently, 18875 available packages in the [CRAN package repository](https://cran.r-project.org/web/checks/check_summary_by_package.html#summary_by_package)
++   some others available on [Github](https://github.com/)
+
+# How to load a library?
+![](images/load_library.png)
+
+In the console or the script
+
+```{r, eval=FALSE, collapse=TRUE}
+install.packages(ggplot2)      # install a library, this has to be executed only once per environment
+
+library(ggplot2)			         # loading a library
+detach(ggplot2)			           # Removing a loaded library
+
+```
+# References
+
++   [Wickham, H., & Grolemund, G. (2016). R for data science: import, tidy, transform, visualize, and model data. " O'Reilly Media, Inc.".](https://r4ds.had.co.nz/)
++   [Teetor, P. (2011). R cookbook: Proven recipes for data analysis, statistics, and graphics. " O'Reilly Media, Inc.".](https://rc2e.com/)
+
