@@ -1,141 +1,136 @@
-# SITE SETUP
-# Guide: https://wowchemy.com/docs/getting-started/
-# Documentation: https://wowchemy.com/docs/
-# This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
-
-# Appearance
-
-theme: my_theme
-day_night: false
-font: 'my_font'
-font_size: M
-
-# SEO
-
-site_type: Person
-local_business_type: ''
-org_name: ''
-description: 'Nicolás Riveras Muñoz personal website'
-
-# Contact (edit or remove options as required)
-
-address:
-  street: Rümelinstraße 19 – 23  
-  city: Tübingen
-  region: [Baden-Württemberg] 
-  postcode: 72070  
-  country: Germany
-  country_code: DE  
-coordinates:
-  latitude: '48.52384'
-  longitude: '9.05503'
+day_night: no
 directions: 'Office: West building W302'
-office_hours: [Monday to Friday, 10:00-16:00 hrs]
-
-# Localization
-
-date_format: 'Jan 2, 2006'
-time_format: '3:04 PM'
-address_format: de
-
-
-# Site header
-
-main_menu:
-  enable: true
-  align: l
-  show_logo: true
-  show_language: false
-  show_day_night: false
-  show_search: false
-  highlight_active_link: true
-
-
-
-
-# Site features
-highlight: true
-highlight_style: dracula
-highlight_languages:
-  - r
-  - python
-  - latex
-math: true
-diagram: false
-privacy_pack: false
-edit_page:
-  repo_url: ''
-  content_dir: ''
-  repo_branch: main
-  editable:
-    page: false
-    post: false
-    book: false
-show_related:
-  book: true
-  page: false
-  post: true
-  project: true
-  publication: true
-  event: true
-reading_time: false
-section_pager: false
-docs_section_pager: true
-sharing: true
-copyright_license:
-  enable: false
-  allow_derivatives: false
-  share_alike: true
-  allow_commercial: false
-  notice: 'This work is licensed under {license}'
-abstract_length: 135
-plugins_js: []
-avatar:
-  gravatar: false
-  shape: circle
-publications:
-  date_format: January 2006
-  citation_style: apa
-projects:
-  post_view: 2
-  publication_view: 2
-  talk_view: 2
-breadcrumb:
-  page_types:
-    book: true
-comments:
-  provider: ''
-  commentable:
-    post: true
-    book: true
-    project: true
-    publication: true
-    event: true
-  disqus:
-    shortname: ''
-    show_count: true
-  commento:
-    url: ''
-search:
-  provider: wowchemy
-  algolia:
-    app_id: ''
+font: my_font
+font_size: M
+office_hours: Monday to Friday, 10:00-16:00 hrs
+theme: my_theme
+extensions:
+  academicons:
+    enable: yes
+  cms:
+    branch: main
+    local_backend: no
+features:
+  avatar:
+    gravatar: no
+    shape: circle
+  comment:
+    commento:
+      url: ''
+    disqus:
+      shortname: ''
+      show_count: yes
+    giscus:
+      category: ''
+      category_id: ''
+      repo: ''
+      repo_id: ''
+    provider: ''
+  map:
     api_key: ''
-    index_name: ''
-    show_logo: false
-map:
-  provider: mapnik
-  api_key: ''
-  zoom: 15
+    provider: mapnik
+    zoom: 15
+  math:
+    enable: yes
+  privacy_pack:
+    enable: no
+  repository:
+    branch: main
+    content_dir: content
+    url: https://github.com/<username>/<repository>
+  search:
+    algolia:
+      api_key: ''
+      app_id: ''
+      index_name: ''
+      show_logo: no
+    provider: wowchemy
+  syntax_highlighter:
+    theme_dark: dracula
+    theme_light: github-light
+footer:
+  copyright:
+    license:
+      allow_commercial: no
+      allow_derivatives: no
+      enable: no
+      share_alike: yes
+header:
+  navbar:
+    align: l
+    enable: yes
+    highlight_active_link: yes
+    show_day_night: no
+    show_language: no
+    show_logo: yes
+    show_search: no
+locale:
+  address_format: de
+  date_format: Jan 2, 2006
+  time_format: 3:04 PM
 marketing:
-  google_analytics: 'UA-196914537-1'
-  google_tag_manager: ''
-  google_site_verification: 'UA-196914537-1'
-  baidu_site_verification: ''
-  baidu_tongji: ''
-cms:
-  branch: master
-  local_backend: false
-icon:
-  pack:
-    ai: true
+  analytics:
+    baidu_tongji: ''
+    google_analytics: UA-196914537-1
+    google_site_verification: UA-196914537-1
+    google_tag_manager: ''
+    microsoft_clarity: ''
+  seo:
+    description: Webpage to promote the work of nicolas riveras munoz nriveras.
+    local_business_type: ''
+    org_name: ''
+    site_type: Person
+    twitter: wowchemy
+  verification:
+    baidu: ''
+    google: ''
+security:
+  allow_frame: yes
+Advanced:  
+  address_format:
+    de:
+      delimiters:
+        - ' '
+        - ' '
+        - ' '
+        - ' '
+        - ''
+      order:
+        - street
+        - postcode
+        - city
+        - region
+        - country
+    en-gb:
+      delimiters:
+        - ', '
+        - ', '
+        - ', '
+        - ''
+      order:
+        - street
+        - city
+        - region
+        - postcode
+    en-us:
+      delimiters:
+        - ', '
+        - ', '
+        - ' '
+        - ''
+      order:
+        - street
+        - city
+        - region
+        - postcode
+    zh:
+      delimiters:
+        - ' '
+        - ' '
+        - ' '
+        - ''
+      order:
+        - postcode
+        - region
+        - city
+        - street

@@ -1,0 +1,10 @@
+Documentation: https://wowchemy.com/docs/getting-started/get-started/
+
+./content/authors/admin/_index.md         Content displayed in main page
+./content/_index.md                       Blocks showed in the page, add map (https://wowchemy.com/blog/version-4.5-september-2019/)
+./config/_default/menus.yaml              Modify menus displayed
+./config/_default/params.yaml             , modify theme to read (from ./data/themes/)
+./static/uploads/resume.pdf               include resume (it can be edited with the file cv.Rmd)
+./content/authors/admin/avatar.jpg        profile picture
+./assets/media                            icon of page (in the tab of the browser)
+./data/themes/                            add file with customized colors 

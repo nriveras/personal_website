@@ -78,6 +78,7 @@ user_groups:
 - Researchers
 - Visitors
 ---
+I'm a nature and tech enthusiast, constantly torn between two ways of problem-solving: getting hands-on with experiments or diving deep into data analysis. The truth is, there's no one-size-fits-all answer, and it really depends on the situation. But what excites me most is the journey of learning, the thrill of cracking those tough problems, and the joy of helping others along the way.</p>
 
-Passionate about nature and technology, I have always been in the dilemma of which is the best approach to solve a problem: a practical way through experiments or a more theoretical way analysing the data...I don't really have an answer for that and it will probably depend on each case, but I enjoy the process of learning, the challenge of solve it and help people along the way.</p>
-Currently working on soil science, the thin skin of our planet, often ignored, but really fundamental to many processes. I am pursuing my doctoral research in explaining how biota regulates landscape formation processes, through the modulation of erosion.
+Right now, I'm diving into the world of soil science, that often-overlooked layer that's vital to so many processes on our planet. My current quest revolves around understanding how living organisms (biota) play a crucial role in shaping landscapes by controlling erosion. Join me on this adventure as we uncover the secrets hidden beneath Earth's surface, all while harnessing the power of Machine Learning and Data Science to make sense of it all.
+{style="text-align: justify;"}
