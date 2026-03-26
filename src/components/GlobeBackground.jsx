@@ -16,9 +16,9 @@ export default function GlobeBackground({ theme }) {
   const isDark = theme === 'dark';
   const globeBackground = isDark ? 'rgba(15, 23, 42, 1)' : 'rgba(240, 244, 248, 1)';
   const atmosphereColor = isDark ? '#334155' : '#e2e8f0';
-  const globeColor = isDark ? 0x1e293b : 0xf8fafc;
-  const globeEmissive = isDark ? 0x334155 : 0xe2e8f0;
-  const pointColor = isDark ? '#94a3b8' : '#64748b';
+  const globeColor = isDark ? 0x1e293b : 0xedf2f7;
+  const globeEmissive = isDark ? 0x334155 : 0xd0dae8;
+  const pointColor = isDark ? '#94a3b8' : '#506a82';
   const activePointColor = isDark ? '#f1f5f9' : '#e2e8f0';
   const ringColor = isDark ? 'rgba(148, 163, 184, 0.42)' : 'rgba(148, 163, 184, 0.55)';
   const labelColor = isDark ? 'rgba(203, 213, 225, 1)' : 'rgba(100, 116, 139, 1)';
@@ -27,7 +27,7 @@ export default function GlobeBackground({ theme }) {
     [...Array(N).keys()].map(() => {
       const color = isDark
         ? ['rgba(148, 163, 184, 0.16)', 'rgba(148, 163, 184, 0.3)']
-        : ['rgba(100, 116, 139, 0.12)', 'rgba(100, 116, 139, 0.24)'];
+        : ['rgba(100, 116, 139, 0.18)', 'rgba(100, 116, 139, 0.32)'];
 
       return {
         startLat: (Math.random() - 0.5) * 180,

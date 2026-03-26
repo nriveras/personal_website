@@ -112,7 +112,7 @@ function App() {
       : Math.max(28, lightness - 14);
     const glowAlpha = theme === 'dark'
       ? 0.24 + interaction.intensity * 0.28
-      : 0.18 + interaction.intensity * 0.2;
+      : 0.22 + interaction.intensity * 0.28;
     const cursorXPct = `${(interaction.x * 100).toFixed(2)}%`;
     const cursorYPct = `${(interaction.y * 100).toFixed(2)}%`;
 
@@ -161,6 +161,8 @@ function App() {
         <GlobeBackground interaction={interaction} theme={theme} />
       </Suspense>
 
+      <div className="cursor-glow" />
+
       <div className="theme-switcher" aria-label="Theme switcher">
         <button
           type="button"
@@ -199,6 +201,20 @@ function App() {
             <MapPin size={20} /> Doctoral student & Tech Enthusiast
           </p>
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.4, ease: 'easeOut' }}
+          className="hero-what-i-do"
+        >
+          <ul className="what-i-do-list">
+            <li><Leaf size={16} /> <span>Soil & Erosion Research</span></li>
+            <li><LineChart size={16} /> <span>ML & Data Science</span></li>
+            <li><Satellite size={16} /> <span>Remote Sensing</span></li>
+            <li><Camera size={16} /> <span>Nature Photography</span></li>
+          </ul>
+        </motion.div>
       </section>
 
       {/* BENTO GRID: ABOUT & SKILLS & CONTACT */}
@@ -230,9 +246,10 @@ function App() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bento-card col-span-4" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
+              className="bento-card col-span-4"
+              style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
             >
-               <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem' }}>Get in Touch</h3>
+               <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>Get in Touch</h3>
                <div className="contact-info">
                   <div className="contact-item">
                     <MapPin className="contact-icon" />

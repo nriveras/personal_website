@@ -13,7 +13,7 @@
   --accent-color: #2b5f8a;
   --accent-strong: #1e4468;
   --button-text: #f7fbff;
-  --accent-glow: rgba(63, 112, 152, 0.24);
+  --accent-glow: rgba(63, 112, 152, 0.30);
   --cursor-x: 50%;
   --cursor-y: 50%;
   --accent-light: #d8e7f6;
@@ -47,6 +47,24 @@
 }
 
 :root[data-theme='light'] {
+  --bg-color: #f5f9fd;
+  --bg-gradient-start: #ffffff;
+  --bg-gradient-end: #dbe6f0;
+  --bg-radial-fade: rgba(245, 249, 253, 0);
+  --surface-bg: #ffffff;
+  --card-bg: #ffffff;
+  --card-border: #d8e5f2;
+  --text-primary: #000000;
+  --text-secondary: #3a3a3a;
+  --accent-color: #2b5f8a;
+  --accent-strong: #1e4468;
+  --button-text: #f7fbff;
+  --accent-glow: rgba(63, 112, 152, 0.30);
+  --accent-light: #d8e7f6;
+  --card-shadow: 0 14px 34px -22px rgba(41, 70, 102, 0.28);
+  --border-color: #d9e5f1;
+  --hero-panel-bg: rgba(255, 255, 255, 0.92);
+  --hero-panel-border: rgba(196, 214, 233, 0.72);
   color-scheme: light;
 }
 
@@ -80,14 +98,11 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background:
-    radial-gradient(circle 780px at var(--cursor-x) var(--cursor-y), var(--accent-glow) 0%, var(--bg-radial-fade) 55%),
-    linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-color) 58%, var(--bg-gradient-end) 100%);
+  background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-color) 58%, var(--bg-gradient-end) 100%);
   color: var(--text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  transition: background 220ms ease-out;
 }
 
 .app-container {
@@ -180,10 +195,47 @@ body {
 .hero {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1.5rem;
   position: relative;
-  /* Background globe handles the visual weight */
+  z-index: 10;
+}
+
+.hero-what-i-do {
+  z-index: 10;
+  background: var(--hero-panel-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in srgb, var(--accent-light) 45%, var(--hero-panel-border));
+  box-shadow: 0 8px 24px -16px var(--accent-glow);
+}
+
+.what-i-do-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.what-i-do-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.what-i-do-list li svg {
+  color: var(--accent-color);
+  flex-shrink: 0;
 }
 
 .hero-content {
@@ -434,6 +486,19 @@ h1 {
   overflow: hidden;
 }
 
+/* Cursor-reactive glow — above globe (z:0), below content (z:10) */
+.cursor-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 900px at var(--cursor-x) var(--cursor-y),
+    var(--accent-glow) 0%,
+    transparent 55%
+  );
+}
+
 @media (max-width: 900px) {
 
   .col-span-8,
@@ -451,6 +516,18 @@ h1 {
   .theme-switch-btn {
     padding: 0.4rem 0.68rem;
     font-size: 0.78rem;
+  }
+
+  .what-i-do-list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem 1.2rem;
+  }
+
+  .hero-what-i-do {
+    padding: 0.6rem 1.25rem;
+    border-radius: 16px;
+    margin: 0 1rem;
   }
 
   .col-span-6 {
