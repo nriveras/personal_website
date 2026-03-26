@@ -1,24 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --bg-color: #f0f4f8;
-  --bg-gradient-start: #f8fafc;
-  --bg-gradient-end: #e2e8f0;
-  --bg-radial-fade: rgba(240, 244, 248, 0);
+  --bg-color: #f5f9fd;
+  --bg-gradient-start: #ffffff;
+  --bg-gradient-end: #dbe6f0;
+  --bg-radial-fade: rgba(245, 249, 253, 0);
   --surface-bg: #ffffff;
-  --text-primary: #1e293b;
-  --text-secondary: #64748b;
-  --accent-color: #64748b;
-  --accent-strong: #475569;
-  --button-text: #ffffff;
-  --accent-glow: rgba(100, 116, 139, 0.22);
+  --card-bg: #ffffff;
+  --card-border: #d8e5f2;
+  --text-primary: #000000;
+  --text-secondary: #3a3a3a;
+  --accent-color: #3f7098;
+  --accent-strong: #2f5779;
+  --button-text: #f7fbff;
+  --accent-glow: rgba(63, 112, 152, 0.24);
   --cursor-x: 50%;
   --cursor-y: 50%;
-  --accent-light: #e2e8f0;
-  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-  --border-color: #e2e8f0;
-  --hero-panel-bg: rgba(255, 255, 255, 0.85);
-  --hero-panel-border: rgba(255, 255, 255, 0.5);
+  --accent-light: #d8e7f6;
+  --card-shadow: 0 14px 34px -22px rgba(41, 70, 102, 0.28);
+  --border-color: #d9e5f1;
+  --hero-panel-bg: rgba(255, 255, 255, 0.92);
+  --hero-panel-border: rgba(196, 214, 233, 0.72);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -28,6 +30,8 @@
     --bg-gradient-end: #020617;
     --bg-radial-fade: rgba(15, 23, 42, 0);
     --surface-bg: #1e293b;
+    --card-bg: rgba(30, 41, 59, 0.92);
+    --card-border: #334155;
     --text-primary: #e2e8f0;
     --text-secondary: #94a3b8;
     --accent-color: #94a3b8;
@@ -52,6 +56,8 @@
   --bg-gradient-end: #020617;
   --bg-radial-fade: rgba(15, 23, 42, 0);
   --surface-bg: #1e293b;
+  --card-bg: rgba(30, 41, 59, 0.92);
+  --card-border: #334155;
   --text-primary: #e2e8f0;
   --text-secondary: #94a3b8;
   --accent-color: #94a3b8;
@@ -155,8 +161,8 @@ body {
 
 /* Light Bento Card Styles */
 .bento-card {
-  background: var(--surface-bg);
-  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 16px;
   padding: 2.5rem;
   box-shadow: var(--card-shadow);
