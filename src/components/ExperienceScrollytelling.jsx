@@ -63,8 +63,8 @@ function ExperienceScrollytelling({ experiences }) {
   }, [count, prefersReducedMotion]);
 
   const active = experiences[activeIndex];
-  const dur = prefersReducedMotion ? 0.01 : 0.42;
-  const exitDur = prefersReducedMotion ? 0.01 : 0.2;
+  const dur = prefersReducedMotion ? 0.01 : 0.55;
+  const exitDur = prefersReducedMotion ? 0.01 : 0.28;
   const ease = [0.32, 0.72, 0, 1]; // Apple-style ease
 
   // ───────────── Mobile layout ─────────────

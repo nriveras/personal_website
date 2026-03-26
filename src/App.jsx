@@ -1,6 +1,6 @@
-import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Leaf, Code, LineChart, Satellite, Camera, Mail, MapPin, Sun, Moon, Briefcase, GraduationCap, Rocket, Database, Cloud, FlaskConical, Braces, BookOpen, Microscope, Sprout } from 'lucide-react';
+import { Code, LineChart, Satellite, Mail, MapPin, Sun, Moon, Briefcase, GraduationCap, Rocket, Database, Cloud, FlaskConical, Braces, Microscope, Sprout } from 'lucide-react';
 import ExperienceScrollytelling from './components/ExperienceScrollytelling';
 import EducationScrollytelling from './components/EducationScrollytelling';
 
@@ -9,7 +9,7 @@ const GlobeBackground = lazy(() => import('./components/GlobeBackground'));
 function App() {
   const avatarSrc = `${import.meta.env.BASE_URL}avatar.jpg`;
   const contactSectionRef = useRef(null);
-  const contactNameInputRef = useRef(null);
+  const contactEmailInputRef = useRef(null);
   const [theme, setTheme] = useState(() => {
     if (typeof window === 'undefined') return 'light';
     const savedTheme = window.localStorage.getItem('theme-preference');
@@ -133,13 +133,22 @@ function App() {
   }, [interaction, theme]);
 
   const skills = [
-    { name: 'Python & Data Stack', desc: 'pandas · scikit-learn · Pydantic · FastAPI', icon: <Braces size={24} /> },
-    { name: 'R & Statistics', desc: 'tidyverse · ggplot2 · tidymodels · Shiny', icon: <LineChart size={24} /> },
-    { name: 'Machine Learning', desc: 'Predictive modeling · Genomic prediction', icon: <Database size={24} /> },
-    { name: 'Geospatial & Remote Sensing', desc: 'GIS · Google Earth Engine · Drones', icon: <Satellite size={24} /> },
-    { name: 'Cloud & DevOps', desc: 'AWS · Docker · Kubernetes · CI/CD', icon: <Cloud size={24} /> },
-    { name: 'Soil & Environmental Science', desc: 'Erosion · Ecology · Lab analysis', icon: <FlaskConical size={24} /> },
+    { name: 'Python & Data Stack', desc: 'pandas · scikit-learn · Pydantic · FastAPI', icon: <Braces size={28} /> },
+    { name: 'R & Statistics', desc: 'tidyverse · ggplot2 · tidymodels · Shiny', icon: <LineChart size={28} /> },
+    { name: 'Machine Learning', desc: 'Predictive modeling · Genomic prediction', icon: <Database size={28} /> },
+    { name: 'Geospatial & Remote Sensing', desc: 'GIS · Google Earth Engine · Drones', icon: <Satellite size={28} /> },
+    { name: 'Cloud & DevOps', desc: 'AWS · Docker · Kubernetes · CI/CD', icon: <Cloud size={28} /> },
+    { name: 'Soil & Environmental Science', desc: 'Erosion · Ecology · Lab analysis', icon: <FlaskConical size={28} /> },
   ];
+
+  const prefersReducedMotion = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }, []);
+
+  const ease = [0.32, 0.72, 0, 1];
+  const sceneDur = prefersReducedMotion ? 0.01 : 0.8;
+  const staggerDelay = prefersReducedMotion ? 0 : 0.1;
 
   const experiences = [
     {
@@ -247,10 +256,8 @@ function App() {
     if (contactSectionRef.current) {
       contactSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-
-    // Delay focus slightly to let smooth scrolling settle.
     window.setTimeout(() => {
-      contactNameInputRef.current?.focus();
+      contactEmailInputRef.current?.focus();
     }, 420);
   };
 
@@ -289,28 +296,27 @@ function App() {
         </button>
       </div>
 
-      {/* HERO SECTION */}
-      <section className="hero">
-        <motion.div 
+      {/* ── SCENE 1: HERO / IDENTITY ── */}
+      <section className="hero" aria-label="Introduction">
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: 'easeOut' }}
+          transition={{ duration: 1, ease }}
           className="hero-content"
         >
           <div className="avatar-container">
             <img src={avatarSrc} alt="Nicolás Riveras Muñoz" className="avatar" onError={(e) => e.target.style.display = 'none'} />
           </div>
-          <span className="pill">Welcome</span>
           <h1>Nicolás Riveras Muñoz</h1>
           <p className="subtitle">
-            <MapPin size={20} /> Soil & Data Scientist · PhD
+            <MapPin size={18} /> Soil & Data Scientist · PhD
           </p>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4, ease: 'easeOut' }}
+          transition={{ duration: 1, delay: 0.4, ease }}
           className="hero-what-i-do"
         >
           <ul className="what-i-do-list">
@@ -322,130 +328,100 @@ function App() {
         </motion.div>
       </section>
 
-      {/* BENTO GRID: ABOUT & SKILLS & CONTACT */}
-      <section className="section">
-        <div className="container">
-          <div className="bento-grid">
-            
-            {/* ABOUT CARD (Spans 8 cols on desktop) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6 }}
-              className="bento-card col-span-8 about-content"
+      {/* ── SCENE 2: RESEARCH VISION ── */}
+      <section className="scene" aria-label="About">
+        <motion.div
+          className="scene-content"
+          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 60 }}
+          whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-15%' }}
+          transition={{ duration: sceneDur, ease }}
+        >
+          <h2 className="scene-heading">Bridging Science & Software</h2>
+          <p className="scene-body">
+            Agricultural engineer turned data scientist with a PhD in soil sciences. I bridge the gap between environmental research and production-grade software.
+          </p>
+          <p className="scene-body">
+            From designing rainfall experiments in the field to building ML pipelines that help breeding programs cut costs by up to 7%.
+          </p>
+          <p className="scene-body">
+            Currently at Computomics, I own end-to-end development of Python-based data pipelines for agricultural genomics, serving clients across the Americas, Europe, and Africa.
+          </p>
+          <p className="scene-body">
+            My sweet spot is turning messy real-world datasets into clear, actionable insights.
+          </p>
+        </motion.div>
+      </section>
+
+      {/* ── SCENE 3: SKILLS & EXPERTISE ── */}
+      <section className="scene" aria-label="Skills and expertise">
+        <motion.div
+          className="scene-content"
+          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 60 }}
+          whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-15%' }}
+          transition={{ duration: sceneDur, ease }}
+        >
+          <h2 className="scene-heading">Skills & Expertise</h2>
+        </motion.div>
+
+        <div className="skills-grid" style={{ marginTop: '1rem' }}>
+          {skills.map((skill, index) => (
+            <motion.div
+              key={skill.name}
+              initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-10%' }}
+              transition={{ delay: staggerDelay * index, duration: 0.5, ease }}
+              whileHover={prefersReducedMotion ? {} : { y: -6, scale: 1.04 }}
+              className="skill-card"
             >
-              <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '1.5rem', fontSize: '2rem' }}>About Me</h2>
-              <p>
-                Agricultural engineer turned data scientist with a PhD in soil sciences. I bridge the gap between environmental research and production-grade software — from designing rainfall experiments in the field to building ML pipelines that help breeding programs cut costs by up to 7%.
-              </p>
-              <br />
-              <p>
-                Currently at Computomics, I own end-to-end development of Python-based data pipelines for agricultural genomics, serving clients across the Americas, Europe, and Africa. My sweet spot is turning messy real-world datasets into clear, actionable insights — whether that's through predictive modeling, remote sensing integration, or full-stack analytical tooling.
-              </p>
+              <div className="icon-wrapper">{skill.icon}</div>
+              <h3>{skill.name}</h3>
+              <p>{skill.desc}</p>
             </motion.div>
-
-            {/* QUICK CONTACT CARD (Spans 4 cols on desktop) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bento-card col-span-4"
-              style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
-            >
-               <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>Get in Touch</h3>
-               <div className="contact-info">
-                  <div className="contact-item">
-                    <MapPin className="contact-icon" />
-                    <div>
-                      <h4 style={{ color: 'var(--text-primary)' }}>Location</h4>
-                      <p>Tübingen, Germany</p>
-                    </div>
-                  </div>
-               </div>
-               <button type="button" className="contact-cta-btn" onClick={handleGetInTouchClick}>
-                  <Mail size={18} />
-                  Get in Touch
-               </button>
-            </motion.div>
-
-            {/* SKILLS CARDS (Span 12 cols total, using subgrid or flex inside) */}
-            <div className="col-span-12">
-               <motion.h2 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="section-title"
-                  style={{ textAlign: 'left', marginTop: '3rem', marginBottom: '2rem', fontSize: '2rem' }}
-                >
-                  Skills & Expertise
-                </motion.h2>
-                <div className="skills-grid">
-                  {skills.map((skill, index) => (
-                    <motion.div 
-                      key={skill.name}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1, duration: 0.4 }}
-                      whileHover={{ y: -5, scale: 1.05 }}
-                      className="bento-card skill-card"
-                    >
-                      <div className="icon-wrapper">{skill.icon}</div>
-                      <h3 style={{color: 'var(--text-primary)'}}>{skill.name}</h3>
-                      <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginTop: '0.15rem' }}>{skill.desc}</p>
-                    </motion.div>
-                  ))}
-                </div>
-            </div>
-
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* EXPERIENCE — full-width pinned scrollytelling */}
+      {/* ── SCENE 4: EXPERIENCE ── */}
       <ExperienceScrollytelling experiences={experiences} />
 
-      {/* EDUCATION — full-width pinned scrollytelling, timeline on right */}
+      {/* ── SCENE 5: EDUCATION ── */}
       <EducationScrollytelling education={education} />
 
-      {/* CONTACT */}
-      <section className="section" style={{ paddingTop: '2rem' }}>
-        <div className="container">
-          <div className="bento-grid">
-
-            {/* CONTACT FORM (Spans 12 cols) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              ref={contactSectionRef}
-              className="bento-card col-span-12"
-            >
-              <h2 className="section-title" style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2rem' }}>Send a Message</h2>
-              <form className="contact-form" name="contact" method="POST" data-netlify="true" style={{ maxWidth: '600px', margin: '0 auto' }}>
-                <input type="hidden" name="form-name" value="contact" />
-                <div className="form-group">
-                  <input ref={contactNameInputRef} type="text" name="name" placeholder="Your Name" required />
-                </div>
-                <div className="form-group">
-                  <input type="email" name="email" placeholder="Your Email" required />
-                </div>
-                <div className="form-group">
-                  <textarea name="message" placeholder="How can I help you?" rows="5" required></textarea>
-                </div>
-                <button type="submit" className="submit-btn" style={{ width: '100%', marginTop: '1rem' }}>Send Message</button>
-              </form>
-            </motion.div>
-
-          </div>
-        </div>
+      {/* ── SCENE 6: CONTACT / CTA ── */}
+      <section className="scene" aria-label="Contact" ref={contactSectionRef}>
+        <motion.div
+          className="contact-scene-inner"
+          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 60 }}
+          whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-15%' }}
+          transition={{ duration: sceneDur, ease }}
+          style={{ textAlign: 'center' }}
+        >
+          <h2 className="scene-heading">Let's Connect</h2>
+          <p className="contact-scene-subtitle">
+            Have a project in mind, a question, or just want to say hello?
+          </p>
+          <form className="contact-form" name="contact" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="contact" />
+            <div className="form-group">
+              <input ref={contactEmailInputRef} type="email" name="email" placeholder="Your Email" required />
+            </div>
+            <div className="form-group">
+              <textarea name="message" placeholder="Your message..." rows="4" required></textarea>
+            </div>
+            <button type="submit" className="submit-btn" style={{ width: '100%' }}>
+              <Mail size={18} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '0.5rem' }} />
+              Send Message
+            </button>
+          </form>
+        </motion.div>
       </section>
-      
-      <footer style={{ textAlign: 'center', padding: '3rem 0', color: 'var(--text-secondary)', fontSize: '0.9rem', borderTop: '1px solid var(--border-color)', marginTop: 'auto', background: 'var(--surface-bg)', zIndex: 10, position: 'relative' }}>
-        <p>© {new Date().getFullYear()} Nicolás Riveras Muñoz. Built with Vite & React.</p>
+
+      <footer className="site-footer">
+        <p>© {new Date().getFullYear()} Nicolás Riveras Muñoz</p>
       </footer>
     </div>
   );
