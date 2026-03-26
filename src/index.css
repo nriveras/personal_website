@@ -90,6 +90,56 @@ body {
   flex-direction: column;
 }
 
+.theme-switcher {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 30;
+  display: inline-flex;
+  gap: 0.35rem;
+  padding: 0.35rem;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--surface-bg) 82%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-color) 24%, var(--border-color));
+  box-shadow: 0 10px 30px -20px var(--accent-glow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.theme-switch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: 9999px;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 180ms ease;
+}
+
+.theme-switch-btn:hover {
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--accent-light) 35%, transparent);
+}
+
+.theme-switch-btn.active {
+  color: var(--text-primary);
+  border-color: color-mix(in srgb, var(--accent-color) 52%, var(--border-color));
+  background: color-mix(in srgb, var(--surface-bg) 78%, var(--accent-light));
+  box-shadow: 0 10px 22px -18px var(--accent-glow);
+}
+
+.theme-switch-btn:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--accent-light),
+    0 0 0 4px color-mix(in srgb, var(--accent-glow) 30%, transparent);
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -334,6 +384,16 @@ h1 {
 }
 
 @media (max-width: 600px) {
+  .theme-switcher {
+    top: 0.8rem;
+    right: 0.8rem;
+  }
+
+  .theme-switch-btn {
+    padding: 0.4rem 0.68rem;
+    font-size: 0.78rem;
+  }
+
   .col-span-6 {
     grid-column: span 12;
   }

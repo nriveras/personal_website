@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Leaf, Code, LineChart, Satellite, Camera, Mail, MapPin } from 'lucide-react';
+import { Leaf, Code, LineChart, Satellite, Camera, Mail, MapPin, Sun, Moon } from 'lucide-react';
 
 const GlobeBackground = lazy(() => import('./components/GlobeBackground'));
 
@@ -10,8 +10,13 @@ function App() {
   const contactNameInputRef = useRef(null);
   const [theme, setTheme] = useState(() => {
     if (typeof window === 'undefined') return 'light';
+    const savedTheme = window.localStorage.getItem('theme-preference');
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      return savedTheme;
+    }
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   });
+  const isManualTheme = useRef(false);
 
   const [interaction, setInteraction] = useState({
     x: 0.5,
@@ -65,19 +70,33 @@ function App() {
     const media = window.matchMedia('(prefers-color-scheme: dark)');
 
     const handleThemeChange = (event) => {
+      if (isManualTheme.current) return;
       setTheme(event.matches ? 'dark' : 'light');
     };
 
-    setTheme(media.matches ? 'dark' : 'light');
+    const savedTheme = window.localStorage.getItem('theme-preference');
+    if (savedTheme !== 'light' && savedTheme !== 'dark') {
+      setTheme(media.matches ? 'dark' : 'light');
+    }
+
     media.addEventListener('change', handleThemeChange);
 
     return () => media.removeEventListener('change', handleThemeChange);
   }, []);
 
   useEffect(() => {
+    window.localStorage.setItem('theme-preference', theme);
+  }, [theme]);
+
+  useEffect(() => {
     const root = document.documentElement;
     root.setAttribute('data-theme', theme);
   }, [theme]);
+
+  const setManualTheme = (nextTheme) => {
+    isManualTheme.current = true;
+    setTheme(nextTheme);
+  };
 
   useEffect(() => {
     const root = document.documentElement;
@@ -141,6 +160,27 @@ function App() {
       <Suspense fallback={null}>
         <GlobeBackground interaction={interaction} theme={theme} />
       </Suspense>
+
+      <div className="theme-switcher" aria-label="Theme switcher">
+        <button
+          type="button"
+          className={`theme-switch-btn ${theme === 'light' ? 'active' : ''}`}
+          onClick={() => setManualTheme('light')}
+          aria-pressed={theme === 'light'}
+        >
+          <Sun size={16} />
+          Light
+        </button>
+        <button
+          type="button"
+          className={`theme-switch-btn ${theme === 'dark' ? 'active' : ''}`}
+          onClick={() => setManualTheme('dark')}
+          aria-pressed={theme === 'dark'}
+        >
+          <Moon size={16} />
+          Dark
+        </button>
+      </div>
 
       {/* HERO SECTION */}
       <section className="hero">
