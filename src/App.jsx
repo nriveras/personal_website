@@ -1,6 +1,8 @@
 import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Leaf, Code, LineChart, Satellite, Camera, Mail, MapPin, Sun, Moon } from 'lucide-react';
+import { Leaf, Code, LineChart, Satellite, Camera, Mail, MapPin, Sun, Moon, Briefcase, GraduationCap, Rocket, Database, Cloud, FlaskConical, Braces, BookOpen, Microscope, Sprout } from 'lucide-react';
+import ExperienceScrollytelling from './components/ExperienceScrollytelling';
+import EducationScrollytelling from './components/EducationScrollytelling';
 
 const GlobeBackground = lazy(() => import('./components/GlobeBackground'));
 
@@ -131,11 +133,114 @@ function App() {
   }, [interaction, theme]);
 
   const skills = [
-    { name: 'Agriculture', icon: <Leaf size={24} /> },
-    { name: 'Programming (R)', icon: <Code size={24} /> },
-    { name: 'Statistics', icon: <LineChart size={24} /> },
-    { name: 'Remote Sensing', icon: <Satellite size={24} /> },
-    { name: 'Photography', icon: <Camera size={24} /> },
+    { name: 'Python & Data Stack', desc: 'pandas · scikit-learn · Pydantic · FastAPI', icon: <Braces size={24} /> },
+    { name: 'R & Statistics', desc: 'tidyverse · ggplot2 · tidymodels · Shiny', icon: <LineChart size={24} /> },
+    { name: 'Machine Learning', desc: 'Predictive modeling · Genomic prediction', icon: <Database size={24} /> },
+    { name: 'Geospatial & Remote Sensing', desc: 'GIS · Google Earth Engine · Drones', icon: <Satellite size={24} /> },
+    { name: 'Cloud & DevOps', desc: 'AWS · Docker · Kubernetes · CI/CD', icon: <Cloud size={24} /> },
+    { name: 'Soil & Environmental Science', desc: 'Erosion · Ecology · Lab analysis', icon: <FlaskConical size={24} /> },
+  ];
+
+  const experiences = [
+    {
+      period: '2026 — Present',
+      role: 'Software Developer',
+      company: 'Computomics GmbH',
+      location: 'Tübingen, Germany',
+      description: 'Full-cycle development of ML-based agricultural data pipelines. Engineering and deploying features end-to-end using Python and the modern data stack, with comprehensive testing and code review.',
+      achievements: [
+        'Owned the full software development lifecycle for significant system modules, from initial architectural design to production deployment and performance monitoring.',
+        'Engineered and deployed medium-to-complex features end-to-end using Python, Pydantic, and the Python data stack, including comprehensive unit testing.',
+        'Streamlined development workflows utilizing Git, containerization, and established issue-tracking boards.',
+      ],
+      tags: ['Python', 'Pydantic', 'Docker', 'K8s', 'CI/CD'],
+      icon: <Briefcase size={20} />
+    },
+    {
+      period: '2023 — 2025',
+      role: 'Data Analyst → Software Developer',
+      company: 'Computomics GmbH',
+      location: 'Tübingen, Germany',
+      description: 'Managed 4 key client accounts in U.S. corn breeding, delivering ML-based genomic predictions. Designed a remote sensing pipeline integrating drone and satellite imagery with genomic data.',
+      achievements: [
+        'Managed and analyzed 4 key client accounts in corn breeding programs, translating complex datasets into actionable breeding decisions.',
+        'Designed and implemented a remote-sensing data pipeline integrating multispectral drone and satellite imagery with genomic data to enhance predictive performance.',
+        'Delivered analytical insights to clients in Europe, Africa, and the Americas using ML-based genomic prediction models.',
+      ],
+      tags: ['Python', 'ML', 'AWS', 'Remote Sensing', 'Spark'],
+      icon: <LineChart size={20} />
+    },
+    {
+      period: '2019 — 2023',
+      role: 'Doctoral Researcher',
+      company: 'University of Tübingen',
+      location: 'Tübingen, Germany',
+      description: 'Investigated microbial impacts on soil erosion through controlled rainfall experiments across Chilean climate gradients. Published 6 peer-reviewed papers (3 first-author). Taught applied R programming at Master\'s level.',
+      achievements: [
+        'Authored 6 peer-reviewed publications (3 first-author) and presented results at international conferences on soil sustainability and climate adaptation.',
+        'Led field campaigns with rigorous experimental planning, protocol adherence, and traceable data collection across diverse climate gradients.',
+        'Taught applied R programming for geosciences at the Master\'s level, focusing on reproducible workflows and exploratory analysis.',
+      ],
+      tags: ['R', 'Statistics', 'Experimental Design', 'GIS', 'Teaching'],
+      icon: <GraduationCap size={20} />
+    },
+    {
+      period: '2018 — 2021',
+      role: 'Co-founder',
+      company: 'Agrinnova SpA',
+      location: 'Chile',
+      description: 'Led design of experimental orchards and irrigation systems across distinct Chilean climates. Delivered 10+ soil-focused Environmental Impact Assessments for mining and solar energy projects. Managed field teams in remote high-altitude environments.',
+      achievements: [
+        'Led the design and implementation of 4 experimental agricultural orchards to evaluate crop adaptability across distinct agroclimatic regions of Chile.',
+        'Delivered 10+ soil-focused Environmental Impact Assessments for mining and solar energy developments.',
+        'Coordinated field campaigns involving 4–6 multidisciplinary professionals in high-altitude and remote rural environments.',
+      ],
+      tags: ['Drones', 'GIS', 'Irrigation', 'AutoCAD', 'EIA'],
+      icon: <Rocket size={20} />
+    }
+  ];
+
+  const education = [
+    {
+      period: '2019 — 2023',
+      degree: 'Dr. rer. nat. (PhD) in Soil Sciences',
+      institution: 'University of Tübingen',
+      location: 'Tübingen, Germany',
+      description: 'Doctoral research on microbial impacts on soil erosion across Chilean climate gradients. Designed controlled rainfall experiments and published 6 peer-reviewed papers, 3 as first author.',
+      highlights: [
+        'Developed novel experimental frameworks linking microbial community composition to soil aggregate stability under simulated rainfall.',
+        'Published in high-impact journals including SOIL, Catena, and Geoderma.',
+        'Taught applied R programming for geosciences at the Master\u2019s level.',
+      ],
+      tags: ['Soil Science', 'R', 'Statistics', 'Experimental Design'],
+      icon: <GraduationCap size={20} />
+    },
+    {
+      period: '2016 — 2018',
+      degree: 'M.Sc. in Environmental Sciences',
+      institution: 'University of Tübingen',
+      location: 'Tübingen, Germany',
+      description: 'Specialized in soil biogeochemistry and geospatial analysis. Thesis on remote sensing applications for erosion monitoring in semi-arid landscapes.',
+      highlights: [
+        'Integrated GIS, drone-based remote sensing, and field sampling methods in thesis research.',
+        'Coursework in advanced statistics, environmental modeling, and spatial analysis.',
+      ],
+      tags: ['GIS', 'Remote Sensing', 'Biogeochemistry', 'Modeling'],
+      icon: <Microscope size={20} />
+    },
+    {
+      period: '2009 — 2015',
+      degree: 'B.Sc. in Agricultural Engineering',
+      institution: 'Universidad de Chile',
+      location: 'Santiago, Chile',
+      description: 'Foundation in agronomy, soil science, and environmental systems. Developed practical experience through field campaigns across diverse Chilean climates.',
+      highlights: [
+        'Studied soil physics, plant physiology, irrigation engineering, and agricultural economics.',
+        'Completed field practicums in Chile\u2019s central valley and Atacama Desert fringe regions.',
+      ],
+      tags: ['Agronomy', 'Soil Physics', 'Irrigation', 'Plant Science'],
+      icon: <Sprout size={20} />
+    },
   ];
 
   const handleGetInTouchClick = () => {
@@ -198,7 +303,7 @@ function App() {
           <span className="pill">Welcome</span>
           <h1>Nicolás Riveras Muñoz</h1>
           <p className="subtitle">
-            <MapPin size={20} /> Doctoral student & Tech Enthusiast
+            <MapPin size={20} /> Soil & Data Scientist · PhD
           </p>
         </motion.div>
 
@@ -209,10 +314,10 @@ function App() {
           className="hero-what-i-do"
         >
           <ul className="what-i-do-list">
-            <li><Leaf size={16} /> <span>Soil & Erosion Research</span></li>
+            <li><Code size={16} /> <span>Software Development</span></li>
             <li><LineChart size={16} /> <span>ML & Data Science</span></li>
-            <li><Satellite size={16} /> <span>Remote Sensing</span></li>
-            <li><Camera size={16} /> <span>Nature Photography</span></li>
+            <li><Satellite size={16} /> <span>Geospatial Analysis</span></li>
+            <li><FlaskConical size={16} /> <span>Soil & Environmental Research</span></li>
           </ul>
         </motion.div>
       </section>
@@ -232,11 +337,11 @@ function App() {
             >
               <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '1.5rem', fontSize: '2rem' }}>About Me</h2>
               <p>
-                I'm a nature and tech enthusiast, constantly torn between two ways of problem-solving: getting hands-on with experiments or diving deep into data analysis. The truth is, there's no one-size-fits-all answer, and it really depends on the situation. But what excites me most is the journey of learning, the thrill of cracking those tough problems, and the joy of helping others along the way.
+                Agricultural engineer turned data scientist with a PhD in soil sciences. I bridge the gap between environmental research and production-grade software — from designing rainfall experiments in the field to building ML pipelines that help breeding programs cut costs by up to 7%.
               </p>
               <br />
               <p>
-                Right now, I'm diving into the world of soil science, that often-overlooked layer that's vital to so many processes on our planet. My current quest revolves around understanding how living organisms (biota) play a crucial role in shaping landscapes by controlling erosion. Join me on this adventure as we uncover the secrets hidden beneath Earth's surface, all while harnessing the power of Machine Learning and Data Science to make sense of it all.
+                Currently at Computomics, I own end-to-end development of Python-based data pipelines for agricultural genomics, serving clients across the Americas, Europe, and Africa. My sweet spot is turning messy real-world datasets into clear, actionable insights — whether that's through predictive modeling, remote sensing integration, or full-stack analytical tooling.
               </p>
             </motion.div>
 
@@ -289,10 +394,26 @@ function App() {
                     >
                       <div className="icon-wrapper">{skill.icon}</div>
                       <h3 style={{color: 'var(--text-primary)'}}>{skill.name}</h3>
+                      <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginTop: '0.15rem' }}>{skill.desc}</p>
                     </motion.div>
                   ))}
                 </div>
             </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* EXPERIENCE — full-width pinned scrollytelling */}
+      <ExperienceScrollytelling experiences={experiences} />
+
+      {/* EDUCATION — full-width pinned scrollytelling, timeline on right */}
+      <EducationScrollytelling education={education} />
+
+      {/* CONTACT */}
+      <section className="section" style={{ paddingTop: '2rem' }}>
+        <div className="container">
+          <div className="bento-grid">
 
             {/* CONTACT FORM (Spans 12 cols) */}
             <motion.div 
@@ -302,7 +423,6 @@ function App() {
               transition={{ duration: 0.8 }}
               ref={contactSectionRef}
               className="bento-card col-span-12"
-              style={{ marginTop: '4rem' }}
             >
               <h2 className="section-title" style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2rem' }}>Send a Message</h2>
               <form className="contact-form" name="contact" method="POST" data-netlify="true" style={{ maxWidth: '600px', margin: '0 auto' }}>
