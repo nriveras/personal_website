@@ -103,10 +103,10 @@ function App() {
     const hue = 214 + (interaction.x - 0.5) * 30;
     const saturation = theme === 'dark'
       ? 18 + interaction.intensity * 24
-      : 14 + interaction.intensity * 20;
+      : 40 + interaction.intensity * 16;
     const lightness = theme === 'dark'
       ? 66 + (0.5 - interaction.y) * 10 + interaction.intensity * 6
-      : 44 + (0.5 - interaction.y) * 16 + interaction.intensity * 4;
+      : 36 + (0.5 - interaction.y) * 12 + interaction.intensity * 4;
     const strongLightness = theme === 'dark'
       ? Math.min(92, lightness + 10)
       : Math.max(28, lightness - 14);

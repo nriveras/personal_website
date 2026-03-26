@@ -1,3 +1,18 @@
-references/
+# Dependencies
 node_modules/
+
+# Build output
 dist/
+
+# Old Hugo site (fully replaced by Vite/React)
+_old_site/
+assets/
+resources/
+themes/
+
+# Reference materials
+references/
+
+# OS & editor
+.DS_Store
+*.swp
