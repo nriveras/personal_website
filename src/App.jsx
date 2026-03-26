@@ -5,6 +5,7 @@ import { Leaf, Code, LineChart, Satellite, Camera, Mail, MapPin } from 'lucide-r
 const GlobeBackground = lazy(() => import('./components/GlobeBackground'));
 
 function App() {
+  const avatarSrc = `${import.meta.env.BASE_URL}avatar.jpg`;
   const contactSectionRef = useRef(null);
   const contactNameInputRef = useRef(null);
   const [theme, setTheme] = useState(() => {
@@ -150,7 +151,7 @@ function App() {
           className="hero-content"
         >
           <div className="avatar-container">
-            <img src="/avatar.jpg" alt="Nicolás Riveras Muñoz" className="avatar" onError={(e) => e.target.style.display = 'none'} />
+            <img src={avatarSrc} alt="Nicolás Riveras Muñoz" className="avatar" onError={(e) => e.target.style.display = 'none'} />
           </div>
           <span className="pill">Welcome</span>
           <h1>Nicolás Riveras Muñoz</h1>
