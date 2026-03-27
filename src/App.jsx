@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import React, { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Code, LineChart, Satellite, Mail, MapPin, Sun, Moon, Briefcase, GraduationCap, Rocket, Database, Cloud, FlaskConical, Braces, Microscope, Sprout } from 'lucide-react';
 import ExperienceScrollytelling from './components/ExperienceScrollytelling';
@@ -9,7 +9,6 @@ const GlobeBackground = lazy(() => import('./components/GlobeBackground'));
 function App() {
   const avatarSrc = `${import.meta.env.BASE_URL}avatar.jpg`;
   const contactSectionRef = useRef(null);
-  const contactEmailInputRef = useRef(null);
   const [theme, setTheme] = useState(() => {
     if (typeof window === 'undefined') return 'light';
     const savedTheme = window.localStorage.getItem('theme-preference');
@@ -256,10 +255,12 @@ function App() {
     if (contactSectionRef.current) {
       contactSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-    window.setTimeout(() => {
-      contactEmailInputRef.current?.focus();
-    }, 420);
   };
+
+  const handleEmailClick = useCallback(() => {
+    const a = atob('bnJpdmVyYXMubUBnbWFpbC5jb20=');
+    window.location.href = `mailto:${a}`;
+  }, []);
 
   return (
     <div
@@ -404,19 +405,10 @@ function App() {
           <p className="contact-scene-subtitle">
             Have a project in mind, a question, or just want to say hello?
           </p>
-          <form className="contact-form" name="contact" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="contact" />
-            <div className="form-group">
-              <input ref={contactEmailInputRef} type="email" name="email" placeholder="Your Email" required />
-            </div>
-            <div className="form-group">
-              <textarea name="message" placeholder="Your message..." rows="4" required></textarea>
-            </div>
-            <button type="submit" className="submit-btn" style={{ width: '100%' }}>
-              <Mail size={18} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '0.5rem' }} />
-              Send Message
-            </button>
-          </form>
+          <button type="button" className="submit-btn contact-email-btn" onClick={handleEmailClick}>
+            <Mail size={18} />
+            Get in Touch
+          </button>
         </motion.div>
       </section>
 
