@@ -258,7 +258,7 @@ function App() {
   };
 
   const handleEmailClick = useCallback(() => {
-    const a = atob('bnJpdmVyYXMubUBnbWFpbC5jb20=');
+    const a = atob('Y29udGFjdEBucml2ZXJhcy5jb20=');
     window.location.href = `mailto:${a}`;
   }, []);
 
@@ -338,18 +338,18 @@ function App() {
           viewport={{ once: true, margin: '-15%' }}
           transition={{ duration: sceneDur, ease }}
         >
-          <h2 className="scene-heading">Bridging Science & Software</h2>
+          <h2 className="scene-heading">Where Soil Meets Code</h2>
           <p className="scene-body">
-            Agricultural engineer turned data scientist with a PhD in soil sciences. I bridge the gap between environmental research and production-grade software.
+            I started in the field — literally. Rainfall experiments, soil sampling across Chilean deserts and valleys, a PhD spent getting my hands dirty so the data would mean something.
           </p>
           <p className="scene-body">
-            From designing rainfall experiments in the field to building ML pipelines that help breeding programs cut costs by up to 7%.
+            Somewhere along the way, I picked up Python and never looked back. Now I build the ML pipelines that turn genomic and environmental data into real breeding decisions — the kind that save programs time, money, and guesswork.
           </p>
           <p className="scene-body">
-            Currently at Computomics, I own end-to-end development of Python-based data pipelines for agricultural genomics, serving clients across the Americas, Europe, and Africa.
+            At Computomics, I own that full arc: from raw data to production code, serving clients across the Americas, Europe, and Africa.
           </p>
           <p className="scene-body">
-            My sweet spot is turning messy real-world datasets into clear, actionable insights.
+            Messy datasets don't scare me. Making sense of them is the whole point.
           </p>
         </motion.div>
       </section>
